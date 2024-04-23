@@ -4,11 +4,11 @@
     <ScenarioTestsArtifactsDir>$([MSBuild]::NormalizeDirectory('$(ArtifactsDir)', 'scenario-tests'))</ScenarioTestsArtifactsDir>
     <ScenarioTestsResultsDir>$([MSBuild]::NormalizeDirectory('$(ArtifactsTestResultsDir)', 'scenario-tests'))</ScenarioTestsResultsDir>
     <_ScenarioTestsNuGetConfig>$(ScenarioTestsArtifactsDir)NuGet.config</_ScenarioTestsNuGetConfig>
-    <_InstallerNuGetConfig>$(RepoRoot)src/installer/NuGet.config</_InstallerNuGetConfig>
+    <_InstallerNuGetConfig>$(SrcDir)installer/NuGet.config</_InstallerNuGetConfig>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../src/scenario-tests/src/**/*.csproj" />
+    <ProjectReference Include="$(SrcDir)scenario-tests/src/**/*.csproj" />
   </ItemGroup>
 
   <Target Name="SetupNuGetConfig"
@@ -50,4 +50,5 @@
              Properties="@(_ScenarioTestProperties)"
              Targets="Restore;Build;Test" />
   </Target>
+
 </Project>
